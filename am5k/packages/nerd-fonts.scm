@@ -1,4 +1,4 @@
-(define-module (nongnu packages nerd-fonts)
+(define-module (am5k packages nerd-fonts)
   #:use-module (ice-9 string-fun)
   #:use-module (gnu packages compression)
   #:use-module (guix download)
