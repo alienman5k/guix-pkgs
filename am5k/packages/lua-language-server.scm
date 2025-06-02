@@ -1,4 +1,4 @@
-(define-module (packages lua-language-server)
+(define-module (am5k packages lua-language-server)
   #:use-module (guix packages)
   #:use-module (guix git-download)
   ; #:use-module (guix build git)
@@ -18,8 +18,7 @@
 (define-public lua-language-server
   (package
     (name "lua-language-server")
-    (version "3.14.0") ; or a specific commit hash
-    ; (version (git-version version "" commit))
+    (version "3.14.0")
     (source (origin
                 (method git-fetch)
                 (uri (git-reference
@@ -47,7 +46,6 @@
            (lambda* (#:key outputs #:allow-other-keys)
              (let* ((out (assoc-ref outputs "out"))
                     (share-dir (string-append out "/share/lua-language-server")))
-               ; (mkdir-p (string-append out "/bin"))
                (mkdir-p (string-append share-dir "/bin"))
                (copy-recursively "bin" (string-append share-dir "/bin"))
                (copy-file "main.lua" (string-append share-dir "/main.lua"))
@@ -63,8 +61,8 @@
                     (luals-bin (string-append share-dir "/bin/lua-language-server"))
                     (bin-dir (string-append out "/bin"))
                     (cache-dir (string-append "${XDG_CACHE_HOME:-$HOME/.cache}")))
-               (format #t "Output directory: ~a~%" out)
-               (format #t "Binary path: ~a~%" bin-dir) 
+               ; (format #t "Output directory: ~a~%" out)
+               ; (format #t "Binary path: ~a~%" bin-dir) 
                (if (file-exists? luals-bin)
                  (begin 
                    (mkdir-p bin-dir)
