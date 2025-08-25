@@ -1,4 +1,4 @@
-(define-module (am5k packages aliensevka)
+(define-module (am5k packages fonts)
    #:use-module (guix packages)
    #:use-module (guix download)
    #:use-module (guix build-system font)
