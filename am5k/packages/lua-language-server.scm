@@ -18,7 +18,7 @@
 (define-public lua-language-server
   (package
     (name "lua-language-server")
-    (version "3.14.0")
+    (version "3.15.0")
     (source (origin
                 (method git-fetch)
                 (uri (git-reference
@@ -28,7 +28,7 @@
                 (file-name (git-file-name name version))
                 (sha256
                  (base32
-                  "1cf8rq5hvzd83k8qax3av1201yzw9fcc0scj3598ldaw6054777s"))
+                  "0lww9zfiqcsyvk99mfa95g8bwrw6jl5713zj4z7250ipw3j2mfvy"))
                 (modules '((guix build utils)))))
     (build-system gnu-build-system)
     (arguments
