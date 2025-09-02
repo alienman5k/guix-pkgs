@@ -249,3 +249,49 @@
     (description
      "Solarized is a sixteen color palette (eight monotones, eight accent colors) designed for use with terminal and gui applications.")
     (license license:expat)))
+
+(define-public catppuccin
+  (package
+    (name "neovim-catppuccin")
+    (version "1.11.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/catppuccin/nvim")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1p5j53vzi14vm39qyb9c8wpbzd2ywy1z9cqw782vz3gccis1zngs"))))
+    (build-system vim-build-system)
+    (arguments
+     (list
+      #:plugin-name "catppuccin"))
+    (home-page "https://github.com/catppuccin/nvim")
+    (synopsis "Catppuccin for (Neo)vim.")
+    (description
+     "This port of Catppuccin is special because it was the first one and the one that originated the project itself. Given this, it's important to acknowledge that it all didn't come to be what it is now out of nowhere.")
+    (license license:expat)))
+
+(define-public nvim-jdtls
+  (package
+    (name "neovim-nvim-jdtls")
+    (version "latest")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/mfussenegger/nvim-jdtls")
+             (commit "8eee2302598bad61c5674dc04d7e93cfd85f46f6")))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "02hbiml5i6fw7cb3v7434jppvygl4rjngrf29ls2ridd1wqy6hlr"))))
+    (build-system vim-build-system)
+    (arguments
+     (list
+      #:plugin-name "nvim-jdtls"))
+    (home-page "https://github.com/mfussenegger/nvim-jdtls")
+    (synopsis "Extensions for the built-in Language Server Protocol support in Neovim (>= 0.6.0) for eclipse.jdt.ls.")
+    (description
+     "Extensions for the built-in Language Server Protocol support in Neovim (>= 0.6.0) for eclipse.jdt.ls.")
+    (license license:expat)))
