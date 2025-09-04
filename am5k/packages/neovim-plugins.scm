@@ -3,10 +3,58 @@
                 #:prefix license:)
   #:use-module (guix packages)
   #:use-module (guix git-download)
+  #:use-module (guix build-system)
   #:use-module (guix build-system vim)
+  #:use-module (guix build-system cargo)
+  #:use-module (guix build utils)
   #:use-module (gnu packages vim)
+  #:use-module (gnu packages curl)
+  #:use-module (gnu packages rust)
   #:use-module (guix gexp))
 
+; (define-public blink-cmp-fuzzy
+;   (package
+;     (name "blink-cmp-fuzzy")
+;     (version "1.6.0")
+;     (source
+;      (origin
+;        (method git-fetch)
+;        (uri (git-reference
+;              (url "https://github.com/Saghen/blink.cmp")
+;              (commit (string-append "v" version))))
+;        (file-name (git-file-name name version))
+;        (sha256
+;         (base32 "0af09kssb9n2dxmf2i79kgdnln6f42nba5gg391y4gqqly05hx10"))))
+;     (build-system cargo-build-system)
+;     (arguments
+;      (list
+; 			 #:install-source? #f
+; 			))
+; 		(inputs `(("bincode" ,rust-bincode-1.3.3)
+; 							("blake3" ,rust-blake3-1.8.2)
+; 							("regex" ,rust-regex-1.11.1)))
+;     (home-page "https://github.com/Saghen/blink.cmp")
+;     (synopsis
+;      "Completion plugin with support for LSPs, cmdline, signature help and snippets")
+;     (description
+;      "blink.cmp is a completion plugin with support for LSPs, cmdline, signature help and snippets. It uses an optional custom fuzzy matcher for typo resistance. It provides extensibility via pluggable sources (LSP, buffer, snippets, etc), component based rendering and scripting for the configuration.")
+;     (license license:expat)))
+;
+; (define* (call-with-downloaded-file url proc #:optional (error-thunk #f))
+;   "Fetch URL, store the content in a temporary file and call PROC with that
+; file.  Returns the value returned by PROC.  On error call ERROR-THUNK and
+; return its value or leave if it's false."
+;   (catch #t
+;     (lambda ()
+;       (proc (http-fetch/cached (string->uri url))))
+;     (lambda (key . args)
+;       (if error-thunk
+;           (error-thunk)
+;           (leave (G_ "~A: download failed~%") url)))))
+;
+
+;;TODO: This won't work properly unless we can also build blink-cmp-fuzzy dependency, 
+;;      unless fuzzy implementation is set to Lua, see https://cmp.saghen.dev/configuration/fuzzy.html
 (define-public blink-cmp
   (package
     (name "neovim-blink.cmp")
@@ -271,6 +319,29 @@
     (synopsis "Catppuccin for (Neo)vim.")
     (description
      "This port of Catppuccin is special because it was the first one and the one that originated the project itself. Given this, it's important to acknowledge that it all didn't come to be what it is now out of nowhere.")
+    (license license:expat)))
+
+(define-public nvim-treesitter
+  (package
+    (name "neovim-nvim-treesitter")
+    (version "0.10.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/nvim-treesitter/nvim-treesitter")
+             (commit "42fc28ba918343ebfd5565147a42a26580579482")))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1ck1qslxwi18qxrga68blvk1dg9j4jn65xiw8snq5pk06waksnq9"))))
+    (build-system vim-build-system)
+    (arguments
+     (list
+      #:plugin-name "nvim-treesitter"))
+    (home-page "https://github.com/nvim-treesitter/nvim-treesitter")
+    (synopsis "Treesitter configurations and abstraction layer for Neovim.")
+    (description
+     "The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it.")
     (license license:expat)))
 
 (define-public nvim-jdtls
