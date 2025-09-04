@@ -132,8 +132,7 @@
 ;     (build-system vim-build-system)
 ;     (arguments
 ;      (list
-;       #:plugin-name "mini")
-; 		  #:mode "opt")
+;       #:plugin-name "mini"))
 ;     (home-page "https://github.com/nvim-mini/mini.diff")
 ;     (synopsis "Work with diff hunks")
 ;     (description "Neovim pluing to help working with diff and hunks.")
@@ -155,8 +154,7 @@
     (build-system vim-build-system)
     (arguments
      (list
-      #:plugin-name "mini.diff"
-			#:mode "opt"))
+      #:plugin-name "mini.diff"))
     (home-page "https://github.com/nvim-mini/mini.diff")
     (synopsis "Work with diff hunks")
     (description "Neovim pluing to help working with diff and hunks.")
@@ -178,8 +176,7 @@
     (build-system vim-build-system)
     (arguments
      (list
-      #:plugin-name "mini.files"
-			#:mode "opt"))
+      #:plugin-name "mini.files"))
     (home-page "https://github.com/nvim-mini/mini.files")
     (synopsis "Navigate and manipulate file system")
     (description
@@ -202,8 +199,7 @@
     (build-system vim-build-system)
     (arguments
      (list
-      #:plugin-name "mini.git"
-			#:mode "opt"))
+      #:plugin-name "mini.git"))
     (home-page "https://github.com/nvim-mini/mini-git")
     (synopsis "Navigate and manipulate file system")
     (description
