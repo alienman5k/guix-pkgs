@@ -116,27 +116,28 @@
      "blink.cmp is a completion plugin with support for LSPs, cmdline, signature help and snippets. It uses an optional custom fuzzy matcher for typo resistance. It provides extensibility via pluggable sources (LSP, buffer, snippets, etc), component based rendering and scripting for the configuration.")
     (license license:expat)))
 
-(define-public mini
-  (package
-    (name "neovim-mini")
-    (version "0.16.0")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/nvim-mini/mini.diff")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "1gb5l58vmyiknk7nhyn2r3d02yd4jsd5kpv3q59ja7pzdi0dyng4"))))
-    (build-system vim-build-system)
-    (arguments
-     (list
-      #:plugin-name "mini.files"))
-    (home-page "https://github.com/nvim-mini/mini.diff")
-    (synopsis "Work with diff hunks")
-    (description "Neovim pluing to help working with diff and hunks.")
-    (license license:expat)))
+; (define-public mini
+;   (package
+;     (name "neovim-mini")
+;     (version "0.16.0")
+;     (source
+;      (origin
+;        (method git-fetch)
+;        (uri (git-reference
+;              (url "https://github.com/nvim-mini/mini.diff")
+;              (commit (string-append "v" version))))
+;        (file-name (git-file-name name version))
+;        (sha256
+;         (base32 "1gb5l58vmyiknk7nhyn2r3d02yd4jsd5kpv3q59ja7pzdi0dyng4"))))
+;     (build-system vim-build-system)
+;     (arguments
+;      (list
+;       #:plugin-name "mini")
+; 		  #:mode "opt")
+;     (home-page "https://github.com/nvim-mini/mini.diff")
+;     (synopsis "Work with diff hunks")
+;     (description "Neovim pluing to help working with diff and hunks.")
+;     (license license:expat)))
 
 (define-public mini-diff
   (package
@@ -154,7 +155,8 @@
     (build-system vim-build-system)
     (arguments
      (list
-      #:plugin-name "mini.diff"))
+      #:plugin-name "mini.diff"
+			#:mode "opt"))
     (home-page "https://github.com/nvim-mini/mini.diff")
     (synopsis "Work with diff hunks")
     (description "Neovim pluing to help working with diff and hunks.")
@@ -176,7 +178,8 @@
     (build-system vim-build-system)
     (arguments
      (list
-      #:plugin-name "mini.files"))
+      #:plugin-name "mini.files"
+			#:mode "opt"))
     (home-page "https://github.com/nvim-mini/mini.files")
     (synopsis "Navigate and manipulate file system")
     (description
@@ -199,7 +202,8 @@
     (build-system vim-build-system)
     (arguments
      (list
-      #:plugin-name "mini.git"))
+      #:plugin-name "mini.git"
+			#:mode "opt"))
     (home-page "https://github.com/nvim-mini/mini-git")
     (synopsis "Navigate and manipulate file system")
     (description
