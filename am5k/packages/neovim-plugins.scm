@@ -3,9 +3,11 @@
                 #:prefix license:)
   #:use-module (guix packages)
   #:use-module (guix git-download)
+  #:use-module (guix download)
   #:use-module (guix build-system)
   #:use-module (guix build-system vim)
   #:use-module (guix build-system cargo)
+  #:use-module (guix build-system copy)
   #:use-module (guix build utils)
   #:use-module (gnu packages vim)
   #:use-module (gnu packages curl)
@@ -53,6 +55,24 @@
 ;           (leave (G_ "~A: download failed~%") url)))))
 ;
 
+(define-public blink-cmp-fuzzy-bin
+	(package
+		(name "blink-cmp-fuzzy-bin")
+		(version "1.6.0")
+		(source
+			(origin
+				(method url-fetch)
+				;;https://github.com/Saghen/blink.cmp/releases/download/v1.6.0/x86_64-unknown-linux-gnu.so
+				; (uri (string-append "https://github.com/Saghen/blink.cmp/releases/download/v" version "/" (getenv "HOSTTYPE") "-unknown-linux-gnu.so"))
+				(uri (string-append "https://github.com/Saghen/blink.cmp/releases/download/v" version "/" "x86_64-unknown-linux-gnu.so"))
+				(sha256
+				 (base32 "00c24kai48ycciis5snmz41jx8zkvhxsz8hlj26zsagdzr9asnii"))))
+		(build-system copy-build-system)
+    (home-page "https://github.com/Saghen/blink.cmp")
+    (synopsis "Completion plugin with support for LSPs, cmdline, signature help and snippets")
+    (description "blink.cmp is a completion plugin with support for LSPs, cmdline, signature help and snippets. It uses an optional custom fuzzy matcher for typo resistance. It provides extensibility via pluggable sources (LSP, buffer, snippets, etc), component based rendering and scripting for the configuration.")
+    (license license:expat)))
+
 ;;TODO: This won't work properly unless we can also build blink-cmp-fuzzy dependency, 
 ;;      unless fuzzy implementation is set to Lua, see https://cmp.saghen.dev/configuration/fuzzy.html
 (define-public blink-cmp
@@ -71,7 +91,24 @@
     (build-system vim-build-system)
     (arguments
      (list
-      #:plugin-name "blink.cmp"))
+      #:plugin-name "blink.cmp"
+		  #:phases
+			#~(modify-phases %standard-phases
+				 (add-after 'install 'copy-fuzzy
+				  (lambda* (#:key inputs outputs #:allow-other-keys)
+									 (let ((out (assoc-ref outputs "out"))
+										     (fuzzy (assoc-ref inputs "blink-cmp-fuzzy-bin")))
+									   (format #t "~a~%" fuzzy)
+									   (format #t "~a~%" out)
+										 (invoke "ls" "-l" fuzzy)
+										 (mkdir-p (string-append out "/share/nvim/site/pack/guix/start/blink.cmp/target/release"))
+										 (copy-file (string-append fuzzy "/x86_64-unknown-linux-gnu.so") (string-append out "/share/nvim/site/pack/guix/start/blink.cmp/target/release/libblink_cmp_fuzzy.so"))
+										 )))
+				 )
+		 )
+		)
+		(native-inputs
+			(list blink-cmp-fuzzy-bin))
     (home-page "https://github.com/Saghen/blink.cmp")
     (synopsis
      "Completion plugin with support for LSPs, cmdline, signature help and snippets")
