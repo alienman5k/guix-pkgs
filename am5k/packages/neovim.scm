@@ -1,5 +1,5 @@
 (define-module (am5k packages neovim)
-  #:use-module (am5k packages tree-sitter)
+  ; #:use-module (am5k packages tree-sitter)
   #:use-module (guix packages)
   #:use-module (guix git-download)
   #:use-module (gnu packages vim)
@@ -136,11 +136,11 @@
               (method git-fetch)
               (uri (git-reference
                     (url "https://github.com/neovim/neovim")
-                    (commit "f9ce939bf53b84f7e6e4ecca3875dd0c378991db")))
+                    (commit "b92b95e2c26d5cea86acd3116ee029cc57676f14")))
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "1c1zah52p93vqrw18fh5xppnrqrqb6xh8n4nzwi8nksrscgq8hqp"))))))
+                "1791nx8knjdigs7z8id22jrian4hv0vg3v5bxhppggnpsg08dizf"))))))
 
 
 ; (define-public nvim-latest
