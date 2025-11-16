@@ -56,21 +56,25 @@
 ;
 
 (define-public blink-cmp-fuzzy-bin
-	(package
-		(name "blink-cmp-fuzzy-bin")
-		(version "1.6.0")
-		(source
-			(origin
-				(method url-fetch)
-				;;https://github.com/Saghen/blink.cmp/releases/download/v1.6.0/x86_64-unknown-linux-gnu.so
-				; (uri (string-append "https://github.com/Saghen/blink.cmp/releases/download/v" version "/" (getenv "HOSTTYPE") "-unknown-linux-gnu.so"))
-				(uri (string-append "https://github.com/Saghen/blink.cmp/releases/download/v" version "/" "x86_64-unknown-linux-gnu.so"))
-				(sha256
-				 (base32 "00c24kai48ycciis5snmz41jx8zkvhxsz8hlj26zsagdzr9asnii"))))
-		(build-system copy-build-system)
+  (package
+    (name "blink-cmp-fuzzy-bin")
+    (version "1.6.0")
+    (source
+     (origin
+       (method url-fetch)
+       ;; https://github.com/Saghen/blink.cmp/releases/download/v1.6.0/x86_64-unknown-linux-gnu.so
+       ;; (uri (string-append "https://github.com/Saghen/blink.cmp/releases/download/v" version "/" (getenv "HOSTTYPE") "-unknown-linux-gnu.so"))
+       (uri (string-append
+             "https://github.com/Saghen/blink.cmp/releases/download/v" version
+             "/" "x86_64-unknown-linux-gnu.so"))
+       (sha256
+        (base32 "00c24kai48ycciis5snmz41jx8zkvhxsz8hlj26zsagdzr9asnii"))))
+    (build-system copy-build-system)
     (home-page "https://github.com/Saghen/blink.cmp")
-    (synopsis "Completion plugin with support for LSPs, cmdline, signature help and snippets")
-    (description "blink.cmp is a completion plugin with support for LSPs, cmdline, signature help and snippets. It uses an optional custom fuzzy matcher for typo resistance. It provides extensibility via pluggable sources (LSP, buffer, snippets, etc), component based rendering and scripting for the configuration.")
+    (synopsis
+     "Completion plugin with support for LSPs, cmdline, signature help and snippets")
+    (description
+     "blink.cmp is a completion plugin with support for LSPs, cmdline, signature help and snippets. It uses an optional custom fuzzy matcher for typo resistance. It provides extensibility via pluggable sources (LSP, buffer, snippets, etc), component based rendering and scripting for the configuration.")
     (license license:expat)))
 
 ;;TODO: This won't work properly unless we can also build blink-cmp-fuzzy dependency, 
@@ -92,23 +96,21 @@
     (arguments
      (list
       #:plugin-name "blink.cmp"
-		  #:phases
-			#~(modify-phases %standard-phases
-				 (add-after 'install 'copy-fuzzy
-				  (lambda* (#:key inputs outputs #:allow-other-keys)
-									 (let ((out (assoc-ref outputs "out"))
-										     (fuzzy (assoc-ref inputs "blink-cmp-fuzzy-bin")))
-									   (format #t "~a~%" fuzzy)
-									   (format #t "~a~%" out)
-										 (invoke "ls" "-l" fuzzy)
-										 (mkdir-p (string-append out "/share/nvim/site/pack/guix/start/blink.cmp/target/release"))
-										 (copy-file (string-append fuzzy "/x86_64-unknown-linux-gnu.so") (string-append out "/share/nvim/site/pack/guix/start/blink.cmp/target/release/libblink_cmp_fuzzy.so"))
-										 )))
-				 )
-		 )
-		)
-		(native-inputs
-			(list blink-cmp-fuzzy-bin))
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-after 'install 'copy-fuzzy
+            (lambda* (#:key inputs outputs #:allow-other-keys)
+              (let ((out (assoc-ref outputs "out"))
+                    (fuzzy (assoc-ref inputs "blink-cmp-fuzzy-bin")))
+                (format #t "~a~%" fuzzy)
+                (format #t "~a~%" out)
+                (invoke "ls" "-l" fuzzy)
+                (mkdir-p (string-append out
+                          "/share/nvim/site/pack/guix/start/blink.cmp/target/release"))
+                (copy-file (string-append fuzzy "/x86_64-unknown-linux-gnu.so")
+                           (string-append out
+                            "/share/nvim/site/pack/guix/start/blink.cmp/target/release/libblink_cmp_fuzzy.so"))))))))
+    (native-inputs (list blink-cmp-fuzzy-bin))
     (home-page "https://github.com/Saghen/blink.cmp")
     (synopsis
      "Completion plugin with support for LSPs, cmdline, signature help and snippets")
@@ -137,6 +139,50 @@
 ;     (synopsis "Work with diff hunks")
 ;     (description "Neovim pluing to help working with diff and hunks.")
 ;     (license license:expat)))
+
+(define-public mini-clue
+  (package
+    (name "neovim-mini.clue")
+    (version "0.16.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/nvim-mini/mini.clue")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "12p09p8b9b79fpqw8f9pfbs5l6gra3agbns0zaipm2aja0kkisva"))))
+    (build-system vim-build-system)
+    (arguments
+     (list
+      #:plugin-name "mini.clue"))
+    (home-page "https://github.com/nvim-mini/mini.clue")
+    (synopsis "Show next key clues")
+    (description "Show next key clues.")
+    (license license:expat)))
+
+(define-public mini-completion
+  (package
+    (name "neovim-mini.completion")
+    (version "0.16.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/nvim-mini/mini.completion")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "01zc0kvwiq1h37q4fgwqi0bg875dks8vxw3aqjg3kyjj1v3z0zw9"))))
+    (build-system vim-build-system)
+    (arguments
+     (list
+      #:plugin-name "mini.completion"))
+    (home-page "https://github.com/nvim-mini/mini.completion")
+    (synopsis "Autocompletion and signature help plugin")
+    (description "Autocompletion and signature help plugin.")
+    (license license:expat)))
 
 (define-public mini-diff
   (package
@@ -283,10 +329,34 @@
        (method git-fetch)
        (uri (git-reference
              (url "https://github.com/nvim-mini/mini.pick")
-             (commit "be6490ae9d7038b9f5185d95a8060054f9b23666")))
+             (commit "b4351399db5043a781a32699a1bde60b747f711f")))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "1yhwb8c44n7bzcqa7vwrh5fqxc6qgx1bxqph43f2sajsgnfd1vhp"))))))
+        (base32 "01jdcgl5yvday92v2h072gs3nv6bmjfvx0br6x61h0a6y9mn7m6i"))))))
+
+(define-public mini-snippets
+  (package
+    (name "neovim-mini.snippets")
+    (version "0.16.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/nvim-mini/mini.snippets")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "19xmqzgx0lv6m6lp6dn4pcr53clgjyrlnh45j795cy9szizw4y0x"))))
+    (build-system vim-build-system)
+    (arguments
+     (list
+      #:plugin-name "mini.snippets"))
+    (home-page "https://github.com/nvim-mini/mini.snippets")
+    (synopsis
+     "Manage and expand snippets")
+    (description
+     "Manage and expand snippets.")
+    (license license:expat)))
 
 (define-public mini-statusline
   (package
@@ -399,7 +469,30 @@
      (list
       #:plugin-name "nvim-jdtls"))
     (home-page "https://github.com/mfussenegger/nvim-jdtls")
-    (synopsis "Extensions for the built-in Language Server Protocol support in Neovim (>= 0.6.0) for eclipse.jdt.ls.")
+    (synopsis
+     "Extensions for the built-in Language Server Protocol support in Neovim (>= 0.6.0) for eclipse.jdt.ls.")
     (description
      "Extensions for the built-in Language Server Protocol support in Neovim (>= 0.6.0) for eclipse.jdt.ls.")
     (license license:expat)))
+
+(define-public nvim-luasnip
+  (package
+    (name "neovim-nvim-luasnip")
+    (version "2.4.1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/L3MON4D3/LuaSnip")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1vjn0fwxv89p4dxycwn5lf7c0fgspzymbjp76n27rqnkab6v1qzy"))))
+    (build-system vim-build-system)
+    (arguments
+     (list
+      #:plugin-name "nvim-luasnip"))
+    (home-page "https://github.com/L3MON4D3/LuaSnip")
+    (synopsis "Snippets engine for Neovim")
+    (description "Snipptes engine for Neovim")
+    (license license:asl2.0)))
