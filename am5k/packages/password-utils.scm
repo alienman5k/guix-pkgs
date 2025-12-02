@@ -1,40 +1,54 @@
 (define-module (am5k packages password-utils)
   #:use-module ((guix licenses) #:prefix license:)
-  #:use-module (guix build-system gnu)
+  #:use-module (guix build-system python)
   #:use-module (guix git-download)
-  #:use-module (guix packages))
+  #:use-module (guix gexp)
+  #:use-module (guix packages)
+  #:use-module (gnu packages gnupg)
+  #:use-module (gnu packages password-utils)
+  #:use-module (gnu packages python)
+  #:use-module (gnu packages python-crypto)
+  #:use-module (gnu packages python-web)
+  #:use-module (gnu packages version-control))
 
-(define-public pass-update
+(define-public pass-audit
   (package
-    (name "pass-update")
-    (version "2.2.1")
+    (name "pass-audit")
+    (version "1.2")
     (source
      (origin
        (method git-fetch)
-       (uri (git-reference 
-							(url "https://github.com/roddhjav/pass-update")
-							(commit (string-append "v" version))))
+       (uri (git-reference
+             (url "https://github.com/roddhjav/pass-audit")
+             (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32
-         "1srg0zpgfj2rcsc8aynq7jy2wd9l2h21rpp73si6rwiccff4ymrl"))))
-    (build-system gnu-build-system)
-    (arguments
-     '(#:make-flags
-       (let* ((out      (assoc-ref %outputs "out"))
-              (bashcomp (string-append out "/etc/bash_completion.d")))
-         (list (string-append "PREFIX=" %output)
-               (string-append "BASHCOMPDIR=" bashcomp)))
-       #:phases
-       (modify-phases %standard-phases
-         (delete 'configure)
-         (delete 'check))
-       #:test-target "test"))
-    (home-page "https://github.com/roddhjav/pass-update")
-    (synopsis "A pass extension that provides an easy flow for updating passwords.")
+        (base32 "1yz2bmbvfli1xgw6na4ksha2ian7aqwdgxkm2z5q8p2ipkq0ya66"))))
+    (build-system python-build-system)
+		(arguments
+			(list
+				; #:tests? #f
+				#:configure-flags
+				; #~(list "--optimize=1" "--skip-build")
+				#~(list "--exclude_package_data")
+				; #:phases
+				; #~(modify-phases %standard-phases
+				; 		(add-before 'build 'setenv
+				; 								(lambda _
+				; 									(setenv "share" (string-append #$output "/share"))
+				; 									(setenv "prefix" (string-append #$output ""))
+				; 									(display (string-append #$output "/share" "\n") ))))
+		))
+    (native-inputs (list password-store git))
+    (inputs (list python-requests python-zxcvbn))
+    (home-page "https://github.com/roddhjav/pass-audit")
+    (synopsis "Extension to @code{password-store} for auditing passwords")
     (description
-     "Pass update extends the pass utility with an update command providing an
-		 easy flow for updating passwords. It supports path, directory and wildcard update.
-		 Moreover, you can select how to update your passwords by automatically 
-		 generating new passwords or manually setting your own.")
-    (license license:gpl3+)))
+     "@code{pass-audit} is a @code{password-store} extension for auditing your
+password repository.  Passwords will be checked against the Python 
+implementation of Dropbox' zxcvbn algorithm and Troy Hunt's Have I Been Pwned
+Service.  It supports safe breached password detection from haveibeenpwned.com
+using a K-anonymity method. Using this method, you do not need to (fully)
+trust the server that stores the breached password. You should read the
+security consideration section for more information.")
+    (license license:gpl3)))
