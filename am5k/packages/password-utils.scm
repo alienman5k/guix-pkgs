@@ -23,22 +23,12 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "1yz2bmbvfli1xgw6na4ksha2ian7aqwdgxkm2z5q8p2ipkq0ya66"))))
+        (base32 "1yz2bmbvfli1xgw6na4ksha2ian7aqwdgxkm2z5q8p2ipkq0ya66"))
+			 (patches (list "am5k/patches/pass-audit/001-set-base-to-an-empty-value.patch" "am5k/patches/pass-audit/002-fix-audit.bash-setup.patch"))))
     (build-system python-build-system)
 		(arguments
 			(list
-				; #:tests? #f
-				#:configure-flags
-				; #~(list "--optimize=1" "--skip-build")
-				#~(list "--exclude_package_data")
-				; #:phases
-				; #~(modify-phases %standard-phases
-				; 		(add-before 'build 'setenv
-				; 								(lambda _
-				; 									(setenv "share" (string-append #$output "/share"))
-				; 									(setenv "prefix" (string-append #$output ""))
-				; 									(display (string-append #$output "/share" "\n") ))))
-		))
+				#:tests? #f))
     (native-inputs (list password-store git))
     (inputs (list python-requests python-zxcvbn))
     (home-page "https://github.com/roddhjav/pass-audit")
