@@ -76,18 +76,17 @@ index 7a973dc..c40ff76 100755
         (base32 "1yz2bmbvfli1xgw6na4ksha2ian7aqwdgxkm2z5q8p2ipkq0ya66"))
 			 (patches (list (pass-audit-patch-001) 
 											(pass-audit-patch-002)))))
-			 ; (patches (list 
-			 ; 					(local-file "../packages/patches/pass-audit-001.patch")
-			 ; 					(local-file "../packages/patches/pass-audit-002.patch")))
-			 ; (patches (search-patches
-			 ; 					"pass-audit-001.patch"
-			 ; 					"pass-audit-002.patch"))
-			 ; (patches (list (generated-patch-gexp)))
     (build-system python-build-system)
 		(arguments
 			(list
-				#:tests? #f))
-    (native-inputs (list password-store))
+				#:phases
+				#~(modify-phases %standard-phases
+						(add-after 'wrap 'wrap-extension-file
+							(lambda* (#:key inputs outputs #:allow-other-keys)
+								(wrap-program (search-input-file outputs "lib/password-store/extensions/audit.bash")
+									`("GUIX_PYTHONPATH" = (,(getenv "GUIX_PYTHONPATH")
+																				 ,(site-packages inputs outputs)))))))))
+    (native-inputs (list password-store gnupg))
     (inputs (list python-requests python-zxcvbn))
     (home-page "https://github.com/roddhjav/pass-audit")
     (synopsis "Extension to @code{password-store} for auditing passwords")
