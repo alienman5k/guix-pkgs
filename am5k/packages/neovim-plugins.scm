@@ -308,7 +308,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "01jdcgl5yvday92v2h072gs3nv6bmjfvx0br6x61h0a6y9mn7m6i"))))
+        (base32 "1hsm3na5q3npclabl716lpmdmwd964r8vc73j2m7hbj61v9623fx"))))
     (build-system vim-build-system)
     (arguments
      (list
