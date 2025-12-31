@@ -203,7 +203,29 @@
       #:plugin-name "mini.diff"))
     (home-page "https://github.com/nvim-mini/mini.diff")
     (synopsis "Work with diff hunks")
-    (description "Neovim pluing to help working with diff and hunks.")
+    (description "Neovim pluging to help working with diff and hunks.")
+    (license license:expat)))
+
+(define-public mini-extra
+  (package
+    (name "neovim-mini.extra")
+    (version "0.17.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/nvim-mini/mini.extra")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0s2gl2pc214v5pp8vcxc39fp66y9asky74qj91z0acr3f6ghs46y"))))
+    (build-system vim-build-system)
+    (arguments
+     (list
+      #:plugin-name "mini.extra"))
+    (home-page "https://nvim-mini.org/mini.nvim/doc/mini-extra.html")
+    (synopsis "Extra 'mini.nvim' functionality")
+    (description "Extra useful functionality which is not essential enough for other ‘mini.nvim’ modules to include directly.")
     (license license:expat)))
 
 (define-public mini-files
