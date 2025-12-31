@@ -136,11 +136,11 @@
               (method git-fetch)
               (uri (git-reference
                     (url "https://github.com/neovim/neovim")
-                    (commit "b92b95e2c26d5cea86acd3116ee029cc57676f14")))
+                    (commit "f3ee2440c781e978777d9369a96d1ae32e12eb8f")))
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "1791nx8knjdigs7z8id22jrian4hv0vg3v5bxhppggnpsg08dizf"))))))
+                "1smydx7spx3xwzdm3ixdhxsxxlqjiqizj6z6bq08n05pk2agvb31"))))))
 
 
 ; (define-public nvim-latest
