@@ -82,7 +82,7 @@
 (define-public blink-cmp
   (package
     (name "neovim-blink.cmp")
-    (version "1.6.0")
+    (version "1.8.0")
     (source
      (origin
        (method git-fetch)
@@ -91,7 +91,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "0af09kssb9n2dxmf2i79kgdnln6f42nba5gg391y4gqqly05hx10"))))
+        (base32 "0nh0ajmxam9anbk62r71aar48cgakf5n1h90snprzx7g7qz5qf96"))))
     (build-system vim-build-system)
     (arguments
      (list
@@ -121,7 +121,7 @@
 ; (define-public mini
 ;   (package
 ;     (name "neovim-mini")
-;     (version "0.16.0")
+;     (version "0.17.0")
 ;     (source
 ;      (origin
 ;        (method git-fetch)
@@ -143,7 +143,7 @@
 (define-public mini-clue
   (package
     (name "neovim-mini.clue")
-    (version "0.16.0")
+    (version "0.17.0")
     (source
      (origin
        (method git-fetch)
@@ -152,7 +152,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "12p09p8b9b79fpqw8f9pfbs5l6gra3agbns0zaipm2aja0kkisva"))))
+        (base32 "0yl0p4i599cwp8i2h466qyvqjv4vg8vdcpy0g87r8wkp46344460"))))
     (build-system vim-build-system)
     (arguments
      (list
@@ -165,7 +165,7 @@
 (define-public mini-completion
   (package
     (name "neovim-mini.completion")
-    (version "0.16.0")
+    (version "0.17.0")
     (source
      (origin
        (method git-fetch)
@@ -174,7 +174,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "01zc0kvwiq1h37q4fgwqi0bg875dks8vxw3aqjg3kyjj1v3z0zw9"))))
+        (base32 "0d3pxaa8zdwg7vay9z4f23wh9ii98ifcpjywzn0wqykr9dir74qi"))))
     (build-system vim-build-system)
     (arguments
      (list
@@ -187,7 +187,7 @@
 (define-public mini-diff
   (package
     (name "neovim-mini.diff")
-    (version "0.16.0")
+    (version "0.17.0")
     (source
      (origin
        (method git-fetch)
@@ -196,7 +196,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "1gb5l58vmyiknk7nhyn2r3d02yd4jsd5kpv3q59ja7pzdi0dyng4"))))
+        (base32 "0jrndrfxasdrq0avgc1cic28646vn68mq4zz1w8kcy8f7jn3bgw4"))))
     (build-system vim-build-system)
     (arguments
      (list
@@ -209,7 +209,7 @@
 (define-public mini-files
   (package
     (name "neovim-mini.files")
-    (version "0.16.0")
+    (version "0.17.0")
     (source
      (origin
        (method git-fetch)
@@ -218,7 +218,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "12027xb9907zk145hsx6qniq1cjm8bm5405njq4cs9vx992pafsh"))))
+        (base32 "1dnxl12w5ggr8g1217c4zrnj8991mp68fq04n4ys34nk12vx8j0n"))))
     (build-system vim-build-system)
     (arguments
      (list
@@ -232,7 +232,7 @@
 (define-public mini-git
   (package
     (name "neovim-mini.git")
-    (version "0.16.0")
+    (version "0.17.0")
     (source
      (origin
        (method git-fetch)
@@ -241,7 +241,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "0vf0ys710yf1apalglxj7kcdyrnrd7jkz1ksi9v1vj3h60pvany2"))))
+        (base32 "1g59hk5y0p1mbmf8n279awiqm16c5bvl17082z71sk1faaq8z83r"))))
     (build-system vim-build-system)
     (arguments
      (list
@@ -255,7 +255,7 @@
 (define-public mini-icons
   (package
     (name "neovim-mini.icons")
-    (version "0.16.0")
+    (version "0.17.0")
     (source
      (origin
        (method git-fetch)
@@ -264,7 +264,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "110bglbbyafjym4md2slgccyjhf90bgg8h9h2ipya6cfqfs4pizy"))))
+        (base32 "0360yf87zq1zlnhhzxnnljh6c2q0s7h8a2c4bqi0k5k4j4fknyya"))))
     (build-system vim-build-system)
     (arguments
      (list
@@ -277,7 +277,7 @@
 (define-public mini-indentscope
   (package
     (name "neovim-mini.indentscope")
-    (version "0.16.0")
+    (version "0.17.0")
     (source
      (origin
        (method git-fetch)
@@ -286,7 +286,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "1xk31bl9gchc8r1pv6f2z7nfkr6q7f1i4qrrj3h4crxb6nhpxmry"))))
+        (base32 "0z22icdlxa4d3bnc57inafd49lmpn3g6qj3y5qbcgrr3n2086asa"))))
     (build-system vim-build-system)
     (arguments
      (list
@@ -299,7 +299,7 @@
 (define-public mini-pick
   (package
     (name "neovim-mini.pick")
-    (version "0.16.0")
+    (version "0.17.0")
     (source
      (origin
        (method git-fetch)
@@ -308,7 +308,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "1wqb0fisg5yd2g4b6zd8668axf8zwqd7a6vyxzzq2rd0qh9jkpa8"))))
+        (base32 "01jdcgl5yvday92v2h072gs3nv6bmjfvx0br6x61h0a6y9mn7m6i"))))
     (build-system vim-build-system)
     (arguments
      (list
@@ -319,25 +319,25 @@
      "Neovim pluing that allows Navigation and manipulation of the file system.")
     (license license:expat)))
 
-(define-public mini-pick-latest
-  (package
-    (inherit mini-pick)
-    (name "neovim-mini.pick")
-    (version "latest")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/nvim-mini/mini.pick")
-             (commit "b4351399db5043a781a32699a1bde60b747f711f")))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "01jdcgl5yvday92v2h072gs3nv6bmjfvx0br6x61h0a6y9mn7m6i"))))))
+; (define-public mini-pick-latest
+;   (package
+;     (inherit mini-pick)
+;     (name "neovim-mini.pick")
+;     (version "latest")
+;     (source
+;      (origin
+;        (method git-fetch)
+;        (uri (git-reference
+;              (url "https://github.com/nvim-mini/mini.pick")
+;              (commit "b4351399db5043a781a32699a1bde60b747f711f")))
+;        (file-name (git-file-name name version))
+;        (sha256
+;         (base32 "0000000000000000000000000000000000000000000000000000"))))))
 
 (define-public mini-snippets
   (package
     (name "neovim-mini.snippets")
-    (version "0.16.0")
+    (version "0.17.0")
     (source
      (origin
        (method git-fetch)
@@ -346,7 +346,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "19xmqzgx0lv6m6lp6dn4pcr53clgjyrlnh45j795cy9szizw4y0x"))))
+        (base32 "1cj5g7arc2q82pffqd9658jynbjgm7i8szfyvmvb8crvk1ycmf3f"))))
     (build-system vim-build-system)
     (arguments
      (list
@@ -361,7 +361,7 @@
 (define-public mini-statusline
   (package
     (name "neovim-mini.statusline")
-    (version "0.16.0")
+    (version "0.17.0")
     (source
      (origin
        (method git-fetch)
@@ -370,7 +370,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "1hhd4fln3m04d9v5pwa3mb1n4nifsilrxp8hs14njcgk2rxv6qar"))))
+        (base32 "1sbh34s35cz7dyphh6ksk7sy8w7v43xrc8mrwjydbc6g805sw3jp"))))
     (build-system vim-build-system)
     (arguments
      (list
