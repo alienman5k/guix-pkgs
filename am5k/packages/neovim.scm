@@ -112,20 +112,20 @@
             tree-sitter-vimdoc))))
 
 
-(define-public nvim-0.11.4
+(define-public nvim-0.11.6
   (package
     (inherit nvim)
     (name "neovim")
-    (version "0.11.4")
+    (version "0.11.6")
     (source (origin
               (method git-fetch)
               (uri (git-reference
                     (url "https://github.com/neovim/neovim")
-                    (commit "cec0ecabd8f47ff81dcb52e8fc9003e365563a84")))
+                    (commit "e8b87a554f2b500dd39463cabdcffc10261f1cef")))
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "1c1zah52p93vqrw18fh5xppnrqrqb6xh8n4nzwi8nksrscgq8hqp"))))))
+                "1iw4mbqbswi4mb9lrz6yxnzk3iy20ilvv2z2l12v9izkqwvckl9m"))))))
 
 (define-public nvim-dev
   (package
@@ -136,11 +136,11 @@
               (method git-fetch)
               (uri (git-reference
                     (url "https://github.com/neovim/neovim")
-                    (commit "0a9d6dc9aae61374ed6ec91c68e05b27e19cb108")))
+                    (commit "471213ee619b19c216b7e180af16c59cabeba9ac")))
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "0w5mmcd36xwr620lf5przbvap73jphhhcm1cbp4j25mm4dcfs1d8"))))))
+                "0bm4awvydkipppaphkgfhnhfwylqs6hx50s35i8ll6gbi277pla9"))))))
 
 
 ; (define-public nvim-latest
