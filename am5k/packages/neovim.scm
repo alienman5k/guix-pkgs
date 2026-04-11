@@ -1,5 +1,4 @@
 (define-module (am5k packages neovim)
-  ; #:use-module (am5k packages tree-sitter)
   #:use-module (guix packages)
   #:use-module (guix git-download)
   #:use-module (gnu packages vim)
@@ -8,7 +7,7 @@
   #:use-module (gnu packages serialization)
   #:use-module (guix gexp))
 
-(define-public nvim
+(define-public nvim-base
   (package
     (inherit neovim)
     (name "neovim")
@@ -112,9 +111,9 @@
             tree-sitter-vimdoc))))
 
 
-(define-public nvim-dev
+(define-public nvim-latest-release
   (package
-    (inherit nvim)
+    (inherit nvim-base)
     (name "neovim")
     (version "0.12.1")
     (source (origin
