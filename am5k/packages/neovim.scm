@@ -126,3 +126,18 @@
                (base32
                 "1lydhvm4abh2y3336nyqqbwiszllnw63c98wdna2mrhi44gfh2jf"))))))
 
+(define-public nvim-dev
+  (package
+    (inherit nvim-base)
+    (name "neovim")
+    (version "0.13.0-dev")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/neovim/neovim")
+                    (commit "6f015cdcdf0b617c9b716e833823498ce7c001c8")))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "024n20mg1gwjccbr6wrnk1zi6mbdfhskzpx914vxbbj7fmwcxb5v"))))))
+
