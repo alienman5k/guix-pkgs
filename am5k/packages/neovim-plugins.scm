@@ -464,10 +464,10 @@
      "Extensions for the built-in Language Server Protocol support in Neovim (>= 0.6.0) for eclipse.jdt.ls.")
     (license license:expat)))
 
-(define-public nvim-luasnip
+(define-public luasnip
   (package
-    (name "neovim-nvim-luasnip")
-    (version "2.4.1")
+    (name "neovim-luasnip")
+    (version "2.5.0")
     (source
      (origin
        (method git-fetch)
@@ -476,11 +476,11 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "1vjn0fwxv89p4dxycwn5lf7c0fgspzymbjp76n27rqnkab6v1qzy"))))
+        (base32 "16cirbi0zjg874858yqd36p3kbrmlpfii3bvx6lm9bpli7b4w9kn"))))
     (build-system vim-build-system)
     (arguments
      (list
-      #:plugin-name "nvim-luasnip"))
+      #:plugin-name "luasnip"))
     (home-page "https://github.com/L3MON4D3/LuaSnip")
     (synopsis "Snippets engine for Neovim")
     (description "Snipptes engine for Neovim")
