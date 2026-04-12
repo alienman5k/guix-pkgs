@@ -78,25 +78,26 @@
     (license license:expat)))
 
 (define-public codecompanion
-	(package
-	 (name "codecompanion")
-	 (version "19.11.0")
-	 (source
-		 (origin
-			 (method git-fetch)
-			 (uri (git-reference
-							(url "https://github.com/olimorris/codecompanion.nvim")
-							(commit (string-append "v" version))))
-			 (file-name (git-file-name name version))
-			 (sha256
-				 (base32 "0w414bipcx444lll66axn6p1aa5wvikzh6am7awil25r18ddrk6g"))))
-	 (build-system vim-build-system)
-	 (arguments
-		 (list
-			 #:plugin-name "codecompanion"))
+  (package
+    (name "neovim-codecompanion")
+    (version "19.11.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/olimorris/codecompanion.nvim")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0w414bipcx444lll66axn6p1aa5wvikzh6am7awil25r18ddrk6g"))))
+    (build-system vim-build-system)
+    (arguments
+     (list
+      #:plugin-name "codecompanion"))
     (home-page "https://github.com/olimorris/codecompanion.nvim")
     (synopsis "Pluging to code with LLMs from inside Neovim.")
-    (description "Code with LLMs and Agents via the in-built adapters, the community adapters or by building your own.")
+    (description
+     "Code with LLMs and Agents via the in-built adapters, the community adapters or by building your own.")
     (license license:expat)))
 
 ; (define-public mini
