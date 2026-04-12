@@ -6,54 +6,13 @@
   #:use-module (guix download)
   #:use-module (guix build-system)
   #:use-module (guix build-system vim)
-  #:use-module (guix build-system cargo)
+  ; #:use-module (guix build-system cargo)
   #:use-module (guix build-system copy)
   #:use-module (guix build utils)
   #:use-module (gnu packages vim)
   #:use-module (gnu packages curl)
-  #:use-module (gnu packages rust)
+  ; #:use-module (gnu packages rust)
   #:use-module (guix gexp))
-
-; (define-public blink-cmp-fuzzy
-;   (package
-;     (name "blink-cmp-fuzzy")
-;     (version "1.6.0")
-;     (source
-;      (origin
-;        (method git-fetch)
-;        (uri (git-reference
-;              (url "https://github.com/Saghen/blink.cmp")
-;              (commit (string-append "v" version))))
-;        (file-name (git-file-name name version))
-;        (sha256
-;         (base32 "0af09kssb9n2dxmf2i79kgdnln6f42nba5gg391y4gqqly05hx10"))))
-;     (build-system cargo-build-system)
-;     (arguments
-;      (list
-; 			 #:install-source? #f
-; 			))
-; 		(inputs `(("bincode" ,rust-bincode-1.3.3)
-; 							("blake3" ,rust-blake3-1.8.2)
-; 							("regex" ,rust-regex-1.11.1)))
-;     (home-page "https://github.com/Saghen/blink.cmp")
-;     (synopsis
-;      "Completion plugin with support for LSPs, cmdline, signature help and snippets")
-;     (description
-;      "blink.cmp is a completion plugin with support for LSPs, cmdline, signature help and snippets. It uses an optional custom fuzzy matcher for typo resistance. It provides extensibility via pluggable sources (LSP, buffer, snippets, etc), component based rendering and scripting for the configuration.")
-;     (license license:expat)))
-;
-; (define* (call-with-downloaded-file url proc #:optional (error-thunk #f))
-;   "Fetch URL, store the content in a temporary file and call PROC with that
-; file.  Returns the value returned by PROC.  On error call ERROR-THUNK and
-; return its value or leave if it's false."
-;   (catch #t
-;     (lambda ()
-;       (proc (http-fetch/cached (string->uri url))))
-;     (lambda (key . args)
-;       (if error-thunk
-;           (error-thunk)
-;           (leave (G_ "~A: download failed~%") url)))))
-;
 
 (define-public blink-cmp-fuzzy-bin
   (package
@@ -116,6 +75,28 @@
      "Completion plugin with support for LSPs, cmdline, signature help and snippets")
     (description
      "blink.cmp is a completion plugin with support for LSPs, cmdline, signature help and snippets. It uses an optional custom fuzzy matcher for typo resistance. It provides extensibility via pluggable sources (LSP, buffer, snippets, etc), component based rendering and scripting for the configuration.")
+    (license license:expat)))
+
+(define-public codecompanion
+	(package
+	 (name "codecompanion")
+	 (version "19.11.0")
+	 (source
+		 (origin
+			 (method git-fetch)
+			 (uri (git-reference
+							(url "https://github.com/olimorris/codecompanion.nvim")
+							(commit (string-append "v" version))))
+			 (file-name (git-file-name name version))
+			 (sha256
+				 (base32 "0w414bipcx444lll66axn6p1aa5wvikzh6am7awil25r18ddrk6g"))))
+	 (build-system vim-build-system)
+	 (arguments
+		 (list
+			 #:plugin-name "codecompanion"))
+    (home-page "https://github.com/olimorris/codecompanion.nvim")
+    (synopsis "Pluging to code with LLMs from inside Neovim.")
+    (description "Code with LLMs and Agents via the in-built adapters, the community adapters or by building your own.")
     (license license:expat)))
 
 ; (define-public mini
@@ -340,21 +321,6 @@
     (description
      "Neovim pluing that allows Navigation and manipulation of the file system.")
     (license license:expat)))
-
-; (define-public mini-pick-latest
-;   (package
-;     (inherit mini-pick)
-;     (name "neovim-mini.pick")
-;     (version "latest")
-;     (source
-;      (origin
-;        (method git-fetch)
-;        (uri (git-reference
-;              (url "https://github.com/nvim-mini/mini.pick")
-;              (commit "b4351399db5043a781a32699a1bde60b747f711f")))
-;        (file-name (git-file-name name version))
-;        (sha256
-;         (base32 "0000000000000000000000000000000000000000000000000000"))))))
 
 (define-public mini-snippets
   (package
