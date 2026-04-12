@@ -485,3 +485,25 @@
     (synopsis "Snippets engine for Neovim")
     (description "Snipptes engine for Neovim")
     (license license:asl2.0)))
+
+(define-public nvim-plenary
+  (package
+    (name "neovim-plenary")
+    (version "2026-04-09")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/nvim-lua/plenary.nvim")
+             (commit "74b06c6c75e4eeb3108ec01852001636d85a932b")))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1bms9ihcz2gsk88mr00izxn7sjl1lfc62mk0fy54z20g756c8iwy"))))
+    (build-system vim-build-system)
+    (arguments
+     (list
+      #:plugin-name "plenary"))
+    (home-page "https://github.com/nvim-lua/plenary.nvim")
+    (synopsis "Neovim utilities.")
+    (description "Neovim utilities.")
+    (license license:asl2.0)))
