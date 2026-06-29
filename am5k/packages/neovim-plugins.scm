@@ -17,7 +17,7 @@
 (define-public blink-cmp-fuzzy-bin
   (package
     (name "blink-cmp-fuzzy-bin")
-    (version "1.6.0")
+    (version "1.10.2")
     (source
      (origin
        (method url-fetch)
@@ -27,7 +27,7 @@
              "https://github.com/Saghen/blink.cmp/releases/download/v" version
              "/" "x86_64-unknown-linux-gnu.so"))
        (sha256
-        (base32 "00c24kai48ycciis5snmz41jx8zkvhxsz8hlj26zsagdzr9asnii"))))
+        (base32 "0bza7krinicghs3xfpj9fxsbgk3lnsfn9n06a9bf5r2vjl1ff28v"))))
     (build-system copy-build-system)
     (home-page "https://github.com/Saghen/blink.cmp")
     (synopsis
@@ -41,7 +41,7 @@
 (define-public blink-cmp
   (package
     (name "neovim-blink.cmp")
-    (version "1.8.0")
+    (version "1.10.2")
     (source
      (origin
        (method git-fetch)
@@ -50,7 +50,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "0nh0ajmxam9anbk62r71aar48cgakf5n1h90snprzx7g7qz5qf96"))))
+        (base32 "0000000000000000000000000000000000000000000000000000"))))
     (build-system vim-build-system)
     (arguments
      (list
