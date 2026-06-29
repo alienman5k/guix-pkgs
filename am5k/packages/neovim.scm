@@ -110,8 +110,8 @@
             tree-sitter-vim
             tree-sitter-vimdoc))))
 
-
-(define-public nvim-latest-release
+;; Neovim stable versions
+(define-public nvim-0.12.1
   (package
     (inherit nvim-base)
     (name "neovim")
@@ -126,18 +126,49 @@
                (base32
                 "1lydhvm4abh2y3336nyqqbwiszllnw63c98wdna2mrhi44gfh2jf"))))))
 
-(define-public nvim-dev
+(define-public nvim-0.12.2
   (package
     (inherit nvim-base)
     (name "neovim")
+    (version "0.12.2")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/neovim/neovim")
+                    (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "0hxnma7qa160d85f39xm6rn895kjlhlcq0f9rnvhsxmngvy27yay"))))))
+
+(define-public nvim
+  (package
+    (inherit nvim-base)
+    (name "neovim")
+    (version "0.12.3")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/neovim/neovim")
+                    (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "0ihk56a737c1qwxr3rg1bl4q91nz39isk7j3ypacj39zln67yalj"))))))
+
+;; Neovim latest version
+(define-public nvim-dev
+  (package
+    (inherit nvim-base)
+    (name "neovim-dev")
     (version "0.13.0-dev")
     (source (origin
               (method git-fetch)
               (uri (git-reference
                     (url "https://github.com/neovim/neovim")
-                    (commit "6f015cdcdf0b617c9b716e833823498ce7c001c8")))
+                    (commit "b22a8e2f00dd5928339ae72052b74f75d3587f88")))
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "024n20mg1gwjccbr6wrnk1zi6mbdfhskzpx914vxbbj7fmwcxb5v"))))))
+                "053k15zmap8cyxnswb0v6bmsmd3vl300mzbva2awg7bldrdrrxj8"))))))
 
