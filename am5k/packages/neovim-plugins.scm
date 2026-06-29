@@ -80,7 +80,7 @@
 (define-public codecompanion
   (package
     (name "neovim-codecompanion")
-    (version "19.11.0")
+    (version "19.17.0")
     (source
      (origin
        (method git-fetch)
@@ -89,7 +89,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "0w414bipcx444lll66axn6p1aa5wvikzh6am7awil25r18ddrk6g"))))
+        (base32 "01g1wgawiq95z69bbkgj09vg5mi4rrp5yr894h6cbfc4hi2yamgz"))))
     (build-system vim-build-system)
     (arguments
      (list
@@ -397,7 +397,7 @@
 (define-public catppuccin
   (package
     (name "neovim-catppuccin")
-    (version "1.11.0")
+    (version "2.0.0")
     (source
      (origin
        (method git-fetch)
@@ -406,7 +406,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "1p5j53vzi14vm39qyb9c8wpbzd2ywy1z9cqw782vz3gccis1zngs"))))
+        (base32 "1m1nghr8g8b0hqhj1v45mbbwfx13vvj3z90qwavy87jbifij67pd"))))
     (build-system vim-build-system)
     (arguments
      (list
@@ -417,6 +417,7 @@
      "This port of Catppuccin is special because it was the first one and the one that originated the project itself. Given this, it's important to acknowledge that it all didn't come to be what it is now out of nowhere.")
     (license license:expat)))
 
+;; TODO: Remove this plugin, no longer mantained, instead we can just add new treesitter langs
 (define-public nvim-treesitter
   (package
     (name "neovim-nvim-treesitter")
@@ -449,10 +450,10 @@
        (method git-fetch)
        (uri (git-reference
              (url "https://github.com/mfussenegger/nvim-jdtls")
-             (commit "8eee2302598bad61c5674dc04d7e93cfd85f46f6")))
+             (commit "6e9d953f0b82bccdb834cfde0e893f3119c22592")))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "02hbiml5i6fw7cb3v7434jppvygl4rjngrf29ls2ridd1wqy6hlr"))))
+        (base32 "0jsbcmbxharqfwwvx6s4g1a7fpj70b5b71nm14bshhacix732i70"))))
     (build-system vim-build-system)
     (arguments
      (list
