@@ -141,7 +141,7 @@
                (base32
                 "0hxnma7qa160d85f39xm6rn895kjlhlcq0f9rnvhsxmngvy27yay"))))))
 
-(define-public nvim
+(define-public nvim-latest
   (package
     (inherit nvim-base)
     (name "neovim")
