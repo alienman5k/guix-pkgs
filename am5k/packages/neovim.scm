@@ -141,7 +141,7 @@
                (base32
                 "0hxnma7qa160d85f39xm6rn895kjlhlcq0f9rnvhsxmngvy27yay"))))))
 
-(define-public nvim-latest
+(define-public nvim-0.12.3
   (package
     (inherit nvim-base)
     (name "neovim")
@@ -156,19 +156,34 @@
                (base32
                 "0ihk56a737c1qwxr3rg1bl4q91nz39isk7j3ypacj39zln67yalj"))))))
 
-;; Neovim latest version
-(define-public nvim-dev
+(define-public nvim-stable
   (package
     (inherit nvim-base)
-    (name "neovim-dev")
-    (version "0.13.0-dev")
+    (name "neovim")
+    (version "stable")
     (source (origin
               (method git-fetch)
               (uri (git-reference
                     (url "https://github.com/neovim/neovim")
-                    (commit "b22a8e2f00dd5928339ae72052b74f75d3587f88")))
+                    (commit (string-append "" version))))
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "053k15zmap8cyxnswb0v6bmsmd3vl300mzbva2awg7bldrdrrxj8"))))))
+                "0ykjwnyibrnz9zqkk6n75szwn5yj9bn7jv7zddk89lb3l6qnk3p8"))))))
+
+;; Neovim latest version
+(define-public nvim-nightly
+  (package
+    (inherit nvim-base)
+    (name "neovim")
+    (version "nightly")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/neovim/neovim")
+                    (commit "b169d9376c9bd7edc7277d5e089894b3f6a43f34")))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "178pl76cghqh31mv4n4047c3xv0aghb7h8ln9azpg5nlnxamx2s6"))))))
 
