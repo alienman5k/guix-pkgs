@@ -80,7 +80,7 @@
 (define-public codecompanion
   (package
     (name "neovim-codecompanion")
-    (version "19.17.0")
+    (version "19.22.0")
     (source
      (origin
        (method git-fetch)
@@ -89,7 +89,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "01g1wgawiq95z69bbkgj09vg5mi4rrp5yr894h6cbfc4hi2yamgz"))))
+        (base32 "0m7pbia82rl8yqxzpk0lh9w8mynsjnvsy61dpjpiv52ys7kmd315"))))
     (build-system vim-build-system)
     (arguments
      (list

@@ -181,9 +181,9 @@
               (method git-fetch)
               (uri (git-reference
                     (url "https://github.com/neovim/neovim")
-                    (commit "b169d9376c9bd7edc7277d5e089894b3f6a43f34")))
+                    (commit "050fa30632e3eb540b0fc9be9343580bdecea2f3")))
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "178pl76cghqh31mv4n4047c3xv0aghb7h8ln9azpg5nlnxamx2s6"))))))
+                "1ijf2vzq4481kcmn12f78xr100vhxskirlz5pxywmd4y1pmj4gsr"))))))
 
