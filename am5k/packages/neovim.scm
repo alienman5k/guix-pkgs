@@ -169,7 +169,7 @@
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "0jwaa177a3bixf9pdzdq381h70z7iizsh5m52iigll7zxm5qnwpa"))))))
+                "0h7y3szk0jrw80l5ib0nninzmqxypfkjjmd51hsn1y0cg2k9py0y"))))))
 
 ;; Neovim latest version
 (define-public nvim-nightly
@@ -181,10 +181,9 @@
               (method git-fetch)
               (uri (git-reference
                     (url "https://github.com/neovim/neovim")
-                    ; (commit "050fa30632e3eb540b0fc9be9343580bdecea2f3")))
                     (commit (string-append version))))
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "0hshi5k6v8b4rsdkm6qw4z8sn0f5v97lhax6r7fkq8vyk5awnphh"))))))
+                "1znbw9ina0sr2y39ynbnd1976zhfqs2b8gi71kp87sxj0c7c5d06"))))))
 
